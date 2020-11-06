@@ -13,9 +13,12 @@ headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
 page = requests.get(URL, headers=headers)
 
 soup = BeautifulSoup(page.content, 'html.parser')
+item = soup.find(id="productTitle").get_text()
 
 stringPrice = soup.find(id="priceblock_ourprice").get_text()
 price = float(stringPrice[5:11])
+
+print(item.strip())
 
 if(price < 160):
     print("Price has been lowered below 160")
